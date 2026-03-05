@@ -9,48 +9,49 @@
 <body>
 
     <div class="game-container">
-        <h1>BATTLE ARCADE</h1>
-
-        <div class="scoreboard">
-            <div class="score-box">
-                <p>JUGADOR</p>
-                <span id="puntos-usuario">0</span>
-            </div>
-            <div class="vs-text">VS</div>
-            <div class="score-box">
-                <p>CPU</p>
-                <span id="puntos-maquina">0</span>
-            </div>
-        </div>
-
-        <div id="pantalla-juego">
-            <p style="font-size: 0.6rem; margin-bottom: 20px;">ELIGE TU ARMA:</p>
-            <div class="buttons-row">
-                <button onclick="jugar('piedra')">🪨 PIEDRA</button>
-                <button onclick="jugar('papel')">📄 PAPEL</button>
-                <button onclick="jugar('tijera')">✂️ TIJERA</button>
-            </div>
-        </div>
-
-        <div id="resultado-ronda">
-            </div>
-
-        <div id="registro-puntos" style="display:none;">
-            <h3>¡GAME OVER!</h3>
-            <p>HAS LLEGADO AL LÍMITE</p>
-            <input type="text" id="iniciales" placeholder="AAA" maxlength="3">
-            <br>
-            <button onclick="enviarPuntaje()" style="margin-top: 15px; border-color: #ff00ff; color: #ff00ff;">
-                GUARDAR RECORD
-            </button>
-        </div>
-
-        <hr style="border: 1px dashed #333; margin: 30px 0;">
-
-        <div id="tabla-ranking">
-            <h4 style="color: #ff00ff;">TOP 10 PLAYERS</h4>
+        
+        <div id="vista-ranking">
+            <h1>HALL OF FAME</h1>
             <div id="lista-ranking">
-                <p style="font-size: 0.5rem; color: #555;">CARGANDO DATOS...</p>
+                </div>
+            <button onclick="mostrarJuego()" class="btn-principal">JUGAR AHORA</button>
+        </div>
+
+        <div id="vista-juego" style="display: none;">
+            <div class="header-juego">
+                <button class="btn-volver" onclick="mostrarRanking()">← VOLVER</button>
+                <h1>BATTLE ARCADE</h1>
+            </div>
+
+            <div class="scoreboard">
+                <div class="score-box">
+                    <p>TÚ</p>
+                    <span id="puntos-usuario">0</span>
+                </div>
+                <div class="vs-text">VS</div>
+                <div class="score-box">
+                    <p>CPU</p>
+                    <span id="puntos-maquina">0</span>
+                </div>
+            </div>
+
+            <div id="pantalla-botones">
+                <p style="font-size: 0.6rem; margin-bottom: 20px;">ELIGE TU ARMA:</p>
+                <div class="buttons-row">
+                    <button onclick="jugar('piedra')">🪨 PIEDRA</button>
+                    <button onclick="jugar('papel')">📄 PAPEL</button>
+                    <button onclick="jugar('tijera')">✂️ TIJERA</button>
+                </div>
+            </div>
+
+            <div id="resultado-ronda"></div>
+
+            <div id="registro-puntos" style="display:none;">
+                <h3>¡FIN DE PARTIDA!</h3>
+                <p>INTRODUCE TUS INICIALES:</p>
+                <input type="text" id="iniciales" placeholder="AAA" maxlength="3">
+                <br>
+                <button onclick="enviarPuntaje()" class="btn-guardar">GUARDAR RÉCORD</button>
             </div>
         </div>
 

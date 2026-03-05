@@ -2,94 +2,89 @@ let puntosUsuario = 0;
 let puntosMaquina = 0;
 const LIMITE_VICTORIAS = 5;
 
-// 1. Lógica principal de cada ronda
-async function jugar(armaElegida) {
+// CAMBIO DE VISTAS
+function mostrarJuego() {
+    puntosUsuario = 0;
+    puntosMaquina = 0;
+    document.getElementById('puntos-usuario').innerText = '0';
+    document.getElementById('puntos-maquina').innerText = '0';
+    document.getElementById('resultado-ronda').innerHTML = '';
+    document.getElementById('pantalla-botones').style.display = 'block';
+    document.getElementById('registro-puntos').style.display = 'none';
+    
+    document.getElementById('vista-ranking').style.display = 'none';
+    document.getElementById('vista-juego').style.display = 'block';
+}
+
+function mostrarRanking() {
+    document.getElementById('vista-juego').style.display = 'none';
+    document.getElementById('vista-ranking').style.display = 'block';
+    cargarRanking();
+}
+
+// LÓGICA DEL JUEGO
+async function jugar(arma) {
     if (puntosUsuario >= LIMITE_VICTORIAS || puntosMaquina >= LIMITE_VICTORIAS) return;
 
     try {
         const response = await fetch('/jugar', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ eleccion: armaElegida })
+            body: JSON.stringify({ eleccion: arma })
         });
-        
         const data = await response.json();
 
-        if (data.error) {
-            console.error("Error del servidor:", data.error);
-            return;
-        }
-
-        mostrarResultadoRonda(armaElegida, data.maquina, data.resultado);
+        mostrarFeedback(arma, data.maquina, data.resultado);
         actualizarMarcador(data.resultado);
-
-    } catch (error) {
-        console.error("Error en la petición:", error);
-    }
+    } catch (e) { console.error(e); }
 }
 
-// 2. Mostrar elecciones en pantalla
-function mostrarResultadoRonda(usuario, maquina, resultado) {
+function mostrarFeedback(user, cpu, res) {
     const iconos = { piedra: '🪨', papel: '📄', tijera: '✂️' };
-    const divResultado = document.getElementById('resultado-ronda');
+    const div = document.getElementById('resultado-ronda');
+    let color = res === 'ganaste' ? '#00ff41' : (res === 'perdiste' ? '#ff00ff' : '#ffff00');
     
-    let color = "#00ff41"; // Verde para ganar
-    if (resultado === 'perdiste') color = "#ff00ff"; // Rosa para perder
-    if (resultado === 'empate') color = "#ffff00"; // Amarillo para empate
-
-    divResultado.innerHTML = `
-        TU: ${iconos[usuario]} vs CPU: ${iconos[maquina]} <br>
-        <span style="color: ${color}">¡${resultado.toUpperCase()}!</span>
+    div.innerHTML = `
+        TU: ${iconos[user]} vs CPU: ${iconos[cpu]} <br>
+        <span style="color: ${color}">¡${res.toUpperCase()}!</span>
     `;
 }
 
-// 3. Controlar el marcador global
-function actualizarMarcador(resultado) {
-    if (resultado === 'ganaste') puntosUsuario++;
-    if (resultado === 'perdiste') puntosMaquina++;
+function actualizarMarcador(res) {
+    if (res === 'ganaste') puntosUsuario++;
+    if (res === 'perdiste') puntosMaquina++;
 
     document.getElementById('puntos-usuario').innerText = puntosUsuario;
     document.getElementById('puntos-maquina').innerText = puntosMaquina;
 
     if (puntosUsuario === LIMITE_VICTORIAS || puntosMaquina === LIMITE_VICTORIAS) {
-        finalizarPartida();
+        document.getElementById('pantalla-botones').style.display = 'none';
+        document.getElementById('registro-puntos').style.display = 'block';
     }
 }
 
-function finalizarPartida() {
-    document.getElementById('pantalla-juego').style.display = 'none';
-    document.getElementById('registro-puntos').style.display = 'block';
-}
-
-// 4. Guardar récord en el JSON
 async function enviarPuntaje() {
-    const iniciales = document.getElementById('iniciales').value || "AAA";
-    
+    const iniciales = document.getElementById('iniciales').value.toUpperCase() || "AAA";
     await fetch('/guardar_ranking', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            iniciales: iniciales,
-            puntos: puntosUsuario
-        })
+        body: JSON.stringify({ iniciales: iniciales, puntos: puntosUsuario })
     });
-
-    location.reload();
+    mostrarRanking();
 }
 
-// 5. Cargar ranking al iniciar
 async function cargarRanking() {
     const response = await fetch('/obtener_ranking');
     const ranking = await response.json();
     const listaDiv = document.getElementById('lista-ranking');
     
     if (ranking.length === 0) {
-        listaDiv.innerHTML = "<p>NO HAY RÉCORDS AÚN</p>";
+        listaDiv.innerHTML = "<p style='color:#444'>NO RECORDS</p>";
         return;
     }
 
     listaDiv.innerHTML = ranking.map((p, i) => 
-        `<p>${i+1}. ${p.iniciales} .... ${p.puntos} PTS</p>`
+        `<p>${i+1}. ${p.iniciales} <span style="color:#fff">....</span> ${p.puntos} PTS</p>`
     ).join('');
 }
 

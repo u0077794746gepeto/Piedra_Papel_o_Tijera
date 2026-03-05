@@ -1,16 +1,14 @@
-/* Importamos una fuente estilo retro/computadora */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-    background-color: #1a1a1a;
-    color: #00ff41; /* Verde Matrix/Terminal */
+    background-color: #0a0a0a;
+    color: #00ff41;
     font-family: 'Press+Start+2P', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    text-shadow: 2px 2px #000;
 }
 
 .game-container {
@@ -20,67 +18,91 @@ body {
     box-shadow: 0 0 20px #00ff41;
     text-align: center;
     border-radius: 15px;
-    max-width: 500px;
+    width: 450px;
+    position: relative;
 }
 
-h1 {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: #ff00ff; /* Rosa Neón para el título */
-    text-shadow: 0 0 10px #ff00ff;
+h1 { font-size: 1rem; color: #ff00ff; margin-bottom: 20px; }
+
+/* ESTILOS RANKING */
+#lista-ranking {
+    margin: 20px 0;
+    background: #111;
+    padding: 20px;
+    border: 1px dashed #00ff41;
+    font-size: 0.7rem;
+    line-height: 2;
 }
+
+.btn-principal {
+    background: transparent;
+    color: #ff00ff;
+    border: 2px solid #ff00ff;
+    padding: 15px;
+    width: 100%;
+    font-family: 'Press+Start+2P', cursive;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+}
+
+/* ESTILOS JUEGO */
+.header-juego {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.btn-volver {
+    background: none;
+    border: none;
+    color: #555;
+    font-family: 'Press+Start+2P', cursive;
+    font-size: 0.5rem;
+    cursor: pointer;
+}
+
+.btn-volver:hover { color: #fff; }
 
 .scoreboard {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 0.8rem;
-    border-bottom: 2px dashed #00ff41;
-    padding-bottom: 15px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
 }
 
 button {
-    background: transparent;
+    background: #000;
     color: #00ff41;
     border: 2px solid #00ff41;
-    padding: 15px;
-    margin: 10px;
+    padding: 10px;
+    margin: 5px;
     font-family: 'Press+Start+2P', cursive;
     cursor: pointer;
-    transition: all 0.3s;
-    font-size: 0.7rem;
 }
 
-button:hover {
-    background: #00ff41;
-    color: #000;
-    box-shadow: 0 0 15px #00ff41;
-}
+button:hover { background: #00ff41; color: #000; }
 
 #resultado-ronda {
     margin-top: 20px;
-    height: 40px;
-    font-size: 0.7rem;
+    min-height: 50px;
+    font-size: 0.6rem;
 }
 
 input {
     background: #000;
-    border: 2px solid #ff00ff;
+    border: 1px solid #ff00ff;
     color: #ff00ff;
     padding: 10px;
     font-family: 'Press+Start+2P', cursive;
     text-align: center;
-    width: 100px;
-    margin-top: 20px;
+    margin: 10px 0;
 }
 
-/* Efecto de parpadeo para el mensaje final */
-#registro-puntos h3 {
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 0, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0); }
 }
