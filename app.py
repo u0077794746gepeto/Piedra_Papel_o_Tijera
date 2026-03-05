@@ -8,7 +8,6 @@ app = Flask(__name__)
 RANKING_FILE = 'ranking.json'
 
 def cargar_datos_seguro():
-    """Lee el JSON y maneja errores si el archivo está vacío o no existe."""
     if not os.path.exists(RANKING_FILE) or os.stat(RANKING_FILE).st_size == 0:
         with open(RANKING_FILE, 'w', encoding='utf-8') as f:
             json.dump([], f)

@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcade: Piedra, Papel o Tijera</title>
+    <title>NEON STRIKE</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
     <div class="game-container">
+        <h1 class="arcade-logo">NEON STRIKE</h1>
         
         <div id="vista-ranking">
-            <h1>HALL OF FAME</h1>
-            <div id="lista-ranking">
-                </div>
+            <h2 style="font-size: 0.8rem; color: #ff00ff;">HALL OF FAME</h2>
+            <div id="lista-ranking"></div>
             <button onclick="mostrarJuego()" class="btn-principal">JUGAR AHORA</button>
         </div>
 
         <div id="vista-juego" style="display: none;">
             <div class="header-juego">
                 <button class="btn-volver" onclick="mostrarRanking()">← VOLVER</button>
-                <h1>BATTLE ARCADE</h1>
+                <span style="font-size: 0.6rem; color: #ff00ff;">BATTLE MODE</span>
             </div>
 
             <div class="scoreboard">
@@ -36,7 +36,6 @@
             </div>
 
             <div id="pantalla-botones">
-                <p style="font-size: 0.6rem; margin-bottom: 20px;">ELIGE TU ARMA:</p>
                 <div class="buttons-row">
                     <button onclick="jugar('piedra')">🪨 PIEDRA</button>
                     <button onclick="jugar('papel')">📄 PAPEL</button>
@@ -48,13 +47,11 @@
 
             <div id="registro-puntos" style="display:none;">
                 <h3>¡FIN DE PARTIDA!</h3>
-                <p>INTRODUCE TUS INICIALES:</p>
                 <input type="text" id="iniciales" placeholder="AAA" maxlength="3">
                 <br>
                 <button onclick="enviarPuntaje()" class="btn-guardar">GUARDAR RÉCORD</button>
             </div>
         </div>
-
     </div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

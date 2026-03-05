@@ -19,12 +19,18 @@ body {
     text-align: center;
     border-radius: 15px;
     width: 450px;
-    position: relative;
 }
 
-h1 { font-size: 1rem; color: #ff00ff; margin-bottom: 20px; }
+/* --- ESTILO DEL TÍTULO ARCADE --- */
+.arcade-logo {
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 3px 3px #ff00ff, 6px 6px #000;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
 
-/* ESTILOS RANKING */
+/* --- RESTO DE ESTILOS (COMO ANTES) --- */
 #lista-ranking {
     margin: 20px 0;
     background: #111;
@@ -42,10 +48,8 @@ h1 { font-size: 1rem; color: #ff00ff; margin-bottom: 20px; }
     width: 100%;
     font-family: 'Press+Start+2P', cursive;
     cursor: pointer;
-    animation: pulse 1.5s infinite;
 }
 
-/* ESTILOS JUEGO */
 .header-juego {
     display: flex;
     align-items: center;
@@ -61,8 +65,6 @@ h1 { font-size: 1rem; color: #ff00ff; margin-bottom: 20px; }
     font-size: 0.5rem;
     cursor: pointer;
 }
-
-.btn-volver:hover { color: #fff; }
 
 .scoreboard {
     display: flex;
@@ -99,10 +101,4 @@ input {
     font-family: 'Press+Start+2P', cursive;
     text-align: center;
     margin: 10px 0;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 0, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0); }
 }
