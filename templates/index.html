@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade: Piedra, Papel o Tijera</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="game-container">
+        <h1>BATTLE ARCADE</h1>
+
+        <div class="scoreboard">
+            <div class="score-box">
+                <p>JUGADOR</p>
+                <span id="puntos-usuario">0</span>
+            </div>
+            <div class="vs-text">VS</div>
+            <div class="score-box">
+                <p>CPU</p>
+                <span id="puntos-maquina">0</span>
+            </div>
+        </div>
+
+        <div id="pantalla-juego">
+            <p style="font-size: 0.6rem; margin-bottom: 20px;">ELIGE TU ARMA:</p>
+            <div class="buttons-row">
+                <button onclick="jugar('piedra')">🪨 PIEDRA</button>
+                <button onclick="jugar('papel')">📄 PAPEL</button>
+                <button onclick="jugar('tijera')">✂️ TIJERA</button>
+            </div>
+        </div>
+
+        <div id="resultado-ronda">
+            </div>
+
+        <div id="registro-puntos" style="display:none;">
+            <h3>¡GAME OVER!</h3>
+            <p>HAS LLEGADO AL LÍMITE</p>
+            <input type="text" id="iniciales" placeholder="AAA" maxlength="3">
+            <br>
+            <button onclick="enviarPuntaje()" style="margin-top: 15px; border-color: #ff00ff; color: #ff00ff;">
+                GUARDAR RECORD
+            </button>
+        </div>
+
+        <hr style="border: 1px dashed #333; margin: 30px 0;">
+
+        <div id="tabla-ranking">
+            <h4 style="color: #ff00ff;">TOP 10 PLAYERS</h4>
+            <div id="lista-ranking">
+                <p style="font-size: 0.5rem; color: #555;">CARGANDO DATOS...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

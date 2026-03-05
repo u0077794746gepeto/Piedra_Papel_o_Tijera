@@ -1,0 +1,29 @@
+#Tecnologia utilizada en este proyecto
+#Flask 3.0.0 — Framework web
+#psycopg2-binary 2.9.9 — Driver para conectar a PostgreSQL
+#python-dotenv 1.0.0 — Para cargar variables de entorno del archivo .env
+#Werkzeug 3.0.1 — Utilidades para hash de contraseñas
+
+#ORDEN DE INSTALACION:
+
+      # https://github.com/juanmiguelkonectia/New_Clase.git (crea el entorno)
+
+      # py -3 -m venv .venv (crea el entorno)
+
+      # .venv\Scripts\activate (activa el entorno)
+
+      # pip install Flask     (instala el framework)
+      # pip install psycopg2  (para conectar python con sql)
+      # pip install werkzeug  (para instalar el cifarador hust)
+      # pip install dotenv    (Para ver las variables de configuracion en el archivo .env)
+      # pip install functools (no es necesaria viene con venv)
+
+
+
+Flask==3.0.0  
+psycopg2-binary==2.9.9 
+python-dotenv==1.0.0
+Werkzeug==3.0.1
+
+#Nuestra aplicación ha de correr con la instrucción
+      # Flask --app app run
